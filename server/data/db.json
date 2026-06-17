@@ -1,0 +1,989 @@
+{
+  "users": [
+    {
+      "id": "u-1",
+      "name": "Arjun Reddy",
+      "email": "arjun@buildtrack.com",
+      "password": "$2a$10$abcdefghijklmnopqrstuvMockPasswordHash123",
+      "role": "Administrator",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150"
+    },
+    {
+      "id": "u-2",
+      "name": "Sanjay Kumar",
+      "email": "sanjay@buildtrack.com",
+      "password": "$2a$10$abcdefghijklmnopqrstuvMockPasswordHash123",
+      "role": "Project Manager",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150"
+    },
+    {
+      "id": "u-3",
+      "name": "Meera Nair",
+      "email": "meera@buildtrack.com",
+      "password": "$2a$10$abcdefghijklmnopqrstuvMockPasswordHash123",
+      "role": "Site Engineer",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150"
+    }
+  ],
+  "projects": [
+    {
+      "id": "p-1",
+      "name": "Green Valley Residency",
+      "location": "Hyderabad, Telangana",
+      "area": 100000,
+      "duration": "6 Months",
+      "startDate": "2024-05-01",
+      "endDate": "2024-10-31",
+      "budget": 50000000,
+      "usedBudget": 34280000,
+      "progress": 72,
+      "status": "On Track",
+      "coverImage": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&auto=format&fit=crop&q=80",
+      "phases": [
+        {
+          "id": "ph-1",
+          "name": "Foundation & Columns",
+          "targetArea": "20,000 SFT",
+          "duration": "01 May - 30 Jun 2024",
+          "budget": 12000000,
+          "status": "Active"
+        },
+        {
+          "id": "ph-2",
+          "name": "Slab & Structure",
+          "targetArea": "40,000 SFT",
+          "duration": "01 Jul - 31 Aug 2024",
+          "budget": 22000000,
+          "status": "Upcoming"
+        },
+        {
+          "id": "ph-3",
+          "name": "Finishing Work",
+          "targetArea": "40,000 SFT",
+          "duration": "01 Sep - 31 Oct 2024",
+          "budget": 16000000,
+          "status": "Upcoming"
+        },
+        {
+          "id": "ph-1781703877401",
+          "status": "Upcoming",
+          "budget": 2500000,
+          "targetArea": "5,000 SFT",
+          "duration": "15 Sep - 15 Oct 2024",
+          "name": "Testing Phase Creation"
+        }
+      ],
+      "plannedMaterials": [
+        {
+          "name": "Cement (53 Grade)",
+          "unit": "Bags",
+          "totalPlanned": 1000,
+          "ph1": 200,
+          "ph2": 400,
+          "ph3": 400,
+          "unitRate": 450,
+          "totalCost": 450000
+        },
+        {
+          "name": "Steel (TMT Bars)",
+          "unit": "Tons",
+          "totalPlanned": 100,
+          "ph1": 20,
+          "ph2": 50,
+          "ph3": 30,
+          "unitRate": 65000,
+          "totalCost": 6500000
+        },
+        {
+          "name": "Sand",
+          "unit": "Loads",
+          "totalPlanned": 500,
+          "ph1": 100,
+          "ph2": 250,
+          "ph3": 150,
+          "unitRate": 8000,
+          "totalCost": 4000000
+        },
+        {
+          "name": "Bricks",
+          "unit": "Nos",
+          "totalPlanned": 50000,
+          "ph1": 10000,
+          "ph2": 25000,
+          "ph3": 15000,
+          "unitRate": 15,
+          "totalCost": 750000
+        },
+        {
+          "name": "Aggregate (20mm)",
+          "unit": "Loads",
+          "totalPlanned": 300,
+          "ph1": 60,
+          "ph2": 150,
+          "ph3": 90,
+          "unitRate": 10000,
+          "totalCost": 3000000
+        },
+        {
+          "name": "Aggregate (10mm)",
+          "unit": "Loads",
+          "totalPlanned": 300,
+          "ph1": 60,
+          "ph2": 150,
+          "ph3": 90,
+          "unitRate": 10000,
+          "totalCost": 3000000
+        },
+        {
+          "name": "Concrete (RMC)",
+          "unit": "Cum",
+          "totalPlanned": 500,
+          "ph1": 100,
+          "ph2": 250,
+          "ph3": 150,
+          "unitRate": 2500,
+          "totalCost": 1250000
+        },
+        {
+          "name": "Shuttering Plywood",
+          "unit": "Sheets",
+          "totalPlanned": 1200,
+          "ph1": 240,
+          "ph2": 600,
+          "ph3": 360,
+          "unitRate": 500,
+          "totalCost": 600000
+        },
+        {
+          "name": "Reinforcement Wire",
+          "unit": "Kg",
+          "totalPlanned": 1000,
+          "ph1": 200,
+          "ph2": 500,
+          "ph3": 300,
+          "unitRate": 90,
+          "totalCost": 90000
+        },
+        {
+          "name": "Electrical & Fittings",
+          "unit": "Lump Sum",
+          "totalPlanned": 1,
+          "ph1": 0,
+          "ph2": 0,
+          "ph3": 1,
+          "unitRate": 1500000,
+          "totalCost": 1500000
+        },
+        {
+          "name": "Plumbing Pipes & Fixtures",
+          "unit": "Lump Sum",
+          "totalPlanned": 1,
+          "ph1": 0,
+          "ph2": 0,
+          "ph3": 1,
+          "unitRate": 1800000,
+          "totalCost": 1800000
+        },
+        {
+          "name": "Paint & Finishes",
+          "unit": "Liters",
+          "totalPlanned": 5000,
+          "ph1": 0,
+          "ph2": 0,
+          "ph3": 5000,
+          "unitRate": 250,
+          "totalCost": 1250000
+        },
+        {
+          "name": "Tiles & Marble",
+          "unit": "SFT",
+          "totalPlanned": 40000,
+          "ph1": 0,
+          "ph2": 0,
+          "ph3": 40000,
+          "unitRate": 120,
+          "totalCost": 4800000
+        }
+      ]
+    },
+    {
+      "id": "p-2",
+      "name": "Skyline Towers",
+      "location": "Bangalore, Karnataka",
+      "area": 120000,
+      "duration": "5 Months",
+      "startDate": "2024-04-15",
+      "endDate": "2024-09-15",
+      "budget": 45000000,
+      "usedBudget": 20250000,
+      "progress": 45,
+      "status": "At Risk",
+      "coverImage": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&auto=format&fit=crop&q=80",
+      "phases": [
+        {
+          "id": "ph-4",
+          "name": "Foundation & Columns",
+          "targetArea": "30,000 SFT",
+          "duration": "15 Apr - 31 May 2024",
+          "budget": 10000000,
+          "status": "Completed"
+        },
+        {
+          "id": "ph-5",
+          "name": "Slab & Structure",
+          "targetArea": "60,000 SFT",
+          "duration": "01 Jun - 31 Jul 2024",
+          "budget": 20000000,
+          "status": "Active"
+        },
+        {
+          "id": "ph-6",
+          "name": "Finishing Work",
+          "targetArea": "30,000 SFT",
+          "duration": "01 Aug - 15 Sep 2024",
+          "budget": 15000000,
+          "status": "Upcoming"
+        }
+      ],
+      "plannedMaterials": [
+        {
+          "name": "Cement (53 Grade)",
+          "unit": "Bags",
+          "totalPlanned": 12000,
+          "ph1": 3000,
+          "ph2": 6000,
+          "ph3": 3000,
+          "unitRate": 430,
+          "totalCost": 5160000
+        }
+      ]
+    },
+    {
+      "id": "p-3",
+      "name": "Maple Heights",
+      "location": "Pune, Maharashtra",
+      "area": 80000,
+      "duration": "5 Months",
+      "startDate": "2024-03-10",
+      "endDate": "2024-08-10",
+      "budget": 37500000,
+      "usedBudget": 33000000,
+      "progress": 88,
+      "status": "On Track",
+      "coverImage": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&auto=format&fit=crop&q=80",
+      "phases": [],
+      "plannedMaterials": []
+    },
+    {
+      "id": "p-4",
+      "name": "Sunrise Apartments",
+      "location": "Hyderabad, Telangana",
+      "area": 150000,
+      "duration": "6 Months",
+      "startDate": "2024-02-05",
+      "endDate": "2024-08-05",
+      "budget": 60000000,
+      "usedBudget": 18000000,
+      "progress": 30,
+      "status": "Delayed",
+      "coverImage": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&auto=format&fit=crop&q=80",
+      "phases": [],
+      "plannedMaterials": []
+    },
+    {
+      "id": "p-5",
+      "name": "Elite Villas",
+      "location": "Chennai, Tamil Nadu",
+      "area": 50000,
+      "duration": "5 Months",
+      "startDate": "2024-05-01",
+      "endDate": "2024-09-30",
+      "budget": 25000000,
+      "usedBudget": 15000000,
+      "progress": 60,
+      "status": "On Track",
+      "coverImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&auto=format&fit=crop&q=80",
+      "phases": [],
+      "plannedMaterials": []
+    },
+    {
+      "id": "p-6",
+      "name": "Lake View Enclave",
+      "location": "Hyderabad, Telangana",
+      "area": 90000,
+      "duration": "6 Months",
+      "startDate": "2024-07-01",
+      "endDate": "2024-12-31",
+      "budget": 42000000,
+      "usedBudget": 4200000,
+      "progress": 10,
+      "status": "Planning",
+      "coverImage": "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&auto=format&fit=crop&q=80",
+      "phases": [],
+      "plannedMaterials": []
+    }
+  ],
+  "budgets": {
+    "p-1": {
+      "totalBudget": 50000000,
+      "allocatedBudget": 63810000,
+      "unallocatedBudget": -13810000,
+      "budgetHealth": "Healthy",
+      "categories": [
+        {
+          "category": "Materials",
+          "allocated": 35810000,
+          "spent": 204685000,
+          "percentage": 72,
+          "health": "Good"
+        },
+        {
+          "category": "Labour",
+          "allocated": 10000000,
+          "spent": 9000000,
+          "percentage": 20,
+          "health": "Good"
+        },
+        {
+          "category": "Equipment",
+          "allocated": 5000000,
+          "spent": 3000000,
+          "percentage": 10,
+          "health": "Good"
+        },
+        {
+          "category": "Transport",
+          "allocated": 2000000,
+          "spent": 1500000,
+          "percentage": 4,
+          "health": "Good"
+        },
+        {
+          "category": "Approvals & Fees",
+          "allocated": 1500000,
+          "spent": 1200000,
+          "percentage": 3,
+          "health": "Warning"
+        },
+        {
+          "category": "Safety",
+          "allocated": 1000000,
+          "spent": 800000,
+          "percentage": 2,
+          "health": "Good"
+        },
+        {
+          "category": "Subcontractors",
+          "allocated": 5000000,
+          "spent": 4500000,
+          "percentage": 10,
+          "health": "Good"
+        },
+        {
+          "category": "Contingency",
+          "allocated": 2000000,
+          "spent": 500000,
+          "percentage": 4,
+          "health": "Good"
+        },
+        {
+          "category": "Other Expenses",
+          "allocated": 1500000,
+          "spent": 1000000,
+          "percentage": 3,
+          "health": "Good"
+        }
+      ],
+      "progressHistory": [
+        {
+          "date": "1 May",
+          "planned": 5000000,
+          "actual": 4800000
+        },
+        {
+          "date": "15 May",
+          "planned": 12000000,
+          "actual": 11500000
+        },
+        {
+          "date": "1 Jun",
+          "planned": 20000000,
+          "actual": 19800000
+        },
+        {
+          "date": "15 Jun",
+          "planned": 30000000,
+          "actual": 29500000
+        },
+        {
+          "date": "1 Jul",
+          "planned": 40000000,
+          "actual": 34200000
+        },
+        {
+          "date": "17 06",
+          "planned": 40000000,
+          "actual": 34280000
+        }
+      ]
+    }
+  },
+  "materials": {
+    "p-1": [
+      {
+        "id": "m-1",
+        "name": "Cement (53 Grade)",
+        "unit": "Bags",
+        "planned": 10000,
+        "purchased": 18500,
+        "used": 17260,
+        "remaining": 1240,
+        "status": "Optimal",
+        "unitRate": 450,
+        "plannedCost": 4500000,
+        "actualCost": 8325000
+      },
+      {
+        "id": "m-2",
+        "name": "Steel (TMT Bars)",
+        "unit": "Tons",
+        "planned": 150,
+        "purchased": 1120,
+        "used": 103,
+        "remaining": 1017,
+        "status": "Optimal",
+        "unitRate": 65000,
+        "plannedCost": 9750000,
+        "actualCost": 72800000
+      },
+      {
+        "id": "m-3",
+        "name": "Sand",
+        "unit": "Loads",
+        "planned": 800,
+        "purchased": 700,
+        "used": 700,
+        "remaining": 0,
+        "status": "Low Stock",
+        "unitRate": 8000,
+        "plannedCost": 6400000,
+        "actualCost": 5600000
+      },
+      {
+        "id": "m-4",
+        "name": "Bricks",
+        "unit": "Nos",
+        "planned": 120000,
+        "purchased": 100000,
+        "used": 97000,
+        "remaining": 3000,
+        "status": "Optimal",
+        "unitRate": 15,
+        "plannedCost": 1800000,
+        "actualCost": 1500000
+      },
+      {
+        "id": "m-5",
+        "name": "Aggregate (20mm)",
+        "unit": "Loads",
+        "planned": 400,
+        "purchased": 350,
+        "used": 310,
+        "remaining": 40,
+        "status": "Optimal",
+        "unitRate": 10000,
+        "plannedCost": 4000000,
+        "actualCost": 3500000
+      },
+      {
+        "id": "m-6",
+        "name": "Electrical & Fittings",
+        "unit": "Lump Sum",
+        "planned": 1,
+        "purchased": 1,
+        "used": 0,
+        "remaining": 1,
+        "status": "Optimal",
+        "unitRate": 1500000,
+        "plannedCost": 1500000,
+        "actualCost": 1500000
+      },
+      {
+        "id": "m-7",
+        "name": "Plumbing Pipes & Fixtures",
+        "unit": "Lump Sum",
+        "planned": 1,
+        "purchased": 0,
+        "used": 0,
+        "remaining": 0,
+        "status": "To Order",
+        "unitRate": 1800000,
+        "plannedCost": 1800000,
+        "actualCost": 0
+      },
+      {
+        "id": "m-8",
+        "name": "Paint & Finishes",
+        "unit": "Liters",
+        "planned": 5000,
+        "purchased": 1000,
+        "used": 200,
+        "remaining": 800,
+        "status": "Optimal",
+        "unitRate": 250,
+        "plannedCost": 1250000,
+        "actualCost": 250000
+      },
+      {
+        "id": "m-9",
+        "name": "Tiles & Marble",
+        "unit": "SFT",
+        "planned": 40000,
+        "purchased": 10000,
+        "used": 1000,
+        "remaining": 9000,
+        "status": "Optimal",
+        "unitRate": 120,
+        "plannedCost": 4800000,
+        "actualCost": 1200000
+      },
+      {
+        "id": "m-1781681418240",
+        "planned": 1000,
+        "purchased": 11001000,
+        "used": 0,
+        "remaining": 11001000,
+        "status": "Optimal",
+        "actualCost": 110010000,
+        "name": "Water",
+        "unit": "Liters",
+        "unitRate": 10,
+        "plannedCost": 10000
+      }
+    ]
+  },
+  "dailyTracking": {
+    "p-1": [
+      {
+        "id": "dt-1781682892661",
+        "date": "2026-06-17",
+        "todayCost": 80000,
+        "materialsUsed": 5115,
+        "workProgress": 50,
+        "labourPresent": 50,
+        "workingHours": 8,
+        "tasks": [],
+        "materialUsageToday": [
+          {
+            "material": "Cement",
+            "used": 60,
+            "unit": "Bags",
+            "cost": 27000
+          },
+          {
+            "material": "Steel",
+            "used": 5,
+            "unit": "Tons",
+            "cost": 325000
+          },
+          {
+            "material": "Sand",
+            "used": 50,
+            "unit": "Loads",
+            "cost": 400000
+          },
+          {
+            "material": "Bricks",
+            "used": 5000,
+            "unit": "Nos",
+            "cost": 75000
+          }
+        ],
+        "areaWiseUsage": [
+          {
+            "area": "Block A",
+            "quantity": 2046,
+            "material": "Cement Used"
+          },
+          {
+            "area": "Block B",
+            "quantity": 1535,
+            "material": "Cement Used"
+          },
+          {
+            "area": "Block C (Roof)",
+            "quantity": 1023,
+            "material": "Cement Used"
+          },
+          {
+            "area": "Site Office",
+            "quantity": 512,
+            "material": "Cement Used"
+          }
+        ],
+        "expensesBreakdown": [
+          {
+            "name": "Materials",
+            "value": 40000,
+            "percentage": 50
+          },
+          {
+            "name": "Labour",
+            "value": 24000,
+            "percentage": 30
+          },
+          {
+            "name": "Equipment",
+            "value": 12000,
+            "percentage": 15
+          },
+          {
+            "name": "Other Expenses",
+            "value": 4000,
+            "percentage": 5
+          }
+        ],
+        "attendance": {
+          "present": 50,
+          "absent": 2
+        },
+        "equipment": {
+          "active": 5,
+          "idle": 2
+        },
+        "issues": [
+          {
+            "id": "i-1781682892655",
+            "title": "3",
+            "severity": "Medium",
+            "status": "Open"
+          }
+        ]
+      },
+      {
+        "id": "dt-1",
+        "date": "2024-06-12",
+        "todayCost": 78000,
+        "materialsUsed": 156,
+        "workProgress": 2.3,
+        "labourPresent": 42,
+        "workingHours": 8.5,
+        "tasks": [
+          {
+            "name": "Foundation Work",
+            "area": "Block A",
+            "status": "Completed"
+          },
+          {
+            "name": "Columns Work",
+            "area": "Block B",
+            "status": "In Progress"
+          },
+          {
+            "name": "Slab Work",
+            "area": "Block A",
+            "status": "Not Started"
+          },
+          {
+            "name": "Roof Preparation",
+            "area": "Block C",
+            "status": "Started"
+          }
+        ],
+        "materialUsageToday": [
+          {
+            "material": "Cement",
+            "used": 120,
+            "unit": "Bags",
+            "cost": 48000
+          },
+          {
+            "material": "Steel",
+            "used": 4.2,
+            "unit": "Tons",
+            "cost": 22000
+          },
+          {
+            "material": "Sand",
+            "used": 12,
+            "unit": "Loads",
+            "cost": 6000
+          },
+          {
+            "material": "Bricks",
+            "used": 2500,
+            "unit": "Nos",
+            "cost": 2000
+          }
+        ],
+        "areaWiseUsage": [
+          {
+            "area": "Block A",
+            "quantity": 50,
+            "material": "Cement Used"
+          },
+          {
+            "area": "Block B",
+            "quantity": 40,
+            "material": "Cement Used"
+          },
+          {
+            "area": "Block C (Roof)",
+            "quantity": 30,
+            "material": "Cement Used"
+          },
+          {
+            "area": "Site Office",
+            "quantity": 10,
+            "material": "Cement Used"
+          }
+        ],
+        "expensesBreakdown": [
+          {
+            "name": "Materials",
+            "value": 35000,
+            "percentage": 44.9
+          },
+          {
+            "name": "Labour",
+            "value": 20000,
+            "percentage": 25.6
+          },
+          {
+            "name": "Equipment",
+            "value": 15000,
+            "percentage": 19.2
+          },
+          {
+            "name": "Other Expenses",
+            "value": 8000,
+            "percentage": 10.3
+          }
+        ],
+        "attendance": {
+          "present": 42,
+          "absent": 2
+        },
+        "equipment": {
+          "active": 5,
+          "idle": 2
+        },
+        "issues": [
+          {
+            "id": "i-1",
+            "title": "Concrete mixer breakdown",
+            "severity": "Medium",
+            "status": "Resolved"
+          },
+          {
+            "id": "i-2",
+            "title": "Late delivery of sand load",
+            "severity": "Low",
+            "status": "Open"
+          }
+        ]
+      }
+    ]
+  },
+  "inventoryLogs": {
+    "p-1": [
+      {
+        "id": "il-1781682892662-0.4804769975830564",
+        "date": "2026-06-17",
+        "material": "Bricks",
+        "type": "Stock Out",
+        "quantity": 5000,
+        "unit": "Nos",
+        "remarks": "Daily tracking usage for 2026-06-17"
+      },
+      {
+        "id": "il-1781682892662-0.019712437948300576",
+        "date": "2026-06-17",
+        "material": "Sand",
+        "type": "Stock Out",
+        "quantity": 50,
+        "unit": "Loads",
+        "remarks": "Daily tracking usage for 2026-06-17"
+      },
+      {
+        "id": "il-1781682892662-0.31847784379894195",
+        "date": "2026-06-17",
+        "material": "Steel (TMT Bars)",
+        "type": "Stock Out",
+        "quantity": 5,
+        "unit": "Tons",
+        "remarks": "Daily tracking usage for 2026-06-17"
+      },
+      {
+        "id": "il-1781682892662-0.7448058024621056",
+        "date": "2026-06-17",
+        "material": "Cement (53 Grade)",
+        "type": "Stock Out",
+        "quantity": 60,
+        "unit": "Bags",
+        "remarks": "Daily tracking usage for 2026-06-17"
+      },
+      {
+        "id": "il-1781682258303",
+        "date": "2026-06-17",
+        "material": "Water",
+        "type": "Stock In",
+        "quantity": 11000000,
+        "unit": "Liters",
+        "remarks": ""
+      },
+      {
+        "id": "il-1781682245193",
+        "date": "2026-06-17",
+        "material": "Water",
+        "type": "Stock In",
+        "quantity": 1000,
+        "unit": "Liters",
+        "remarks": ""
+      },
+      {
+        "id": "il-1781682220782",
+        "date": "2026-06-17",
+        "material": "Cement (53 Grade)",
+        "type": "Stock Out",
+        "quantity": 10000,
+        "unit": "Bags",
+        "remarks": "Block A"
+      },
+      {
+        "id": "il-1781682190617",
+        "date": "2026-06-17",
+        "material": "Cement (53 Grade)",
+        "type": "Stock In",
+        "quantity": 10000,
+        "unit": "Bags",
+        "remarks": ""
+      },
+      {
+        "id": "il-1781682100997",
+        "date": "2026-06-17",
+        "material": "Steel (TMT Bars)",
+        "type": "Stock In",
+        "quantity": 1000,
+        "unit": "Tons",
+        "remarks": ""
+      },
+      {
+        "id": "il-1",
+        "date": "2024-06-12",
+        "material": "Cement (53 Grade)",
+        "type": "Stock Out",
+        "quantity": 120,
+        "unit": "Bags",
+        "remarks": "Issued to Block A Columns"
+      },
+      {
+        "id": "il-2",
+        "date": "2024-06-11",
+        "material": "Cement (53 Grade)",
+        "type": "Stock In",
+        "quantity": 500,
+        "unit": "Bags",
+        "remarks": "Supplier: Ultratech Cement Ltd"
+      },
+      {
+        "id": "il-3",
+        "date": "2024-06-10",
+        "material": "Steel (TMT Bars)",
+        "type": "Stock Out",
+        "quantity": 4.2,
+        "unit": "Tons",
+        "remarks": "Issued to Block B Columns"
+      },
+      {
+        "id": "il-4",
+        "date": "2024-06-08",
+        "material": "Sand",
+        "type": "Stock In",
+        "quantity": 20,
+        "unit": "Loads",
+        "remarks": "Supplier: Local Quarry Supply"
+      }
+    ]
+  },
+  "procurement": {
+    "p-1": [
+      {
+        "id": "pr-1",
+        "material": "Cement (53 Grade)",
+        "quantity": 500,
+        "unit": "Bags",
+        "status": "po_created",
+        "requestedBy": "Sanjay Kumar",
+        "vendor": "UltraTech Cements",
+        "cost": 225000,
+        "date": "2024-06-15"
+      },
+      {
+        "id": "pr-2",
+        "material": "Steel (TMT Bars)",
+        "quantity": 15,
+        "unit": "Tons",
+        "status": "requested",
+        "requestedBy": "Sanjay Kumar",
+        "vendor": "Tata Tiscon",
+        "cost": 975000,
+        "date": "2024-06-16"
+      },
+      {
+        "id": "pr-3",
+        "material": "Plumbing Pipes",
+        "quantity": 100,
+        "unit": "Nos",
+        "status": "approved",
+        "requestedBy": "Meera Nair",
+        "vendor": "Supreme Pipes",
+        "cost": 85000,
+        "date": "2024-06-17"
+      },
+      {
+        "id": "pr-4",
+        "material": "Sand",
+        "quantity": 10,
+        "unit": "Loads",
+        "status": "delivered",
+        "requestedBy": "Meera Nair",
+        "vendor": "Local Quarries",
+        "cost": 80000,
+        "date": "2024-06-11"
+      }
+    ]
+  },
+  "alerts": {
+    "p-1": [
+      {
+        "id": "a-1",
+        "title": "Cement stock will finish in 6 days",
+        "desc": "Reorder 500 Bags to avoid delay",
+        "type": "Warning",
+        "date": "2024-06-17"
+      },
+      {
+        "id": "a-2",
+        "title": "Steel usage exceeded plan by 8%",
+        "desc": "Extra cost: ₹2,40,00,000",
+        "type": "Critical",
+        "date": "2024-06-16"
+      },
+      {
+        "id": "a-3",
+        "title": "Project is 5 days behind schedule",
+        "desc": "Delay may impact overall timeline",
+        "type": "Info",
+        "date": "2024-06-15"
+      },
+      {
+        "id": "a-4",
+        "title": "Great! You saved ₹1,20,000",
+        "desc": "This month on material costs",
+        "type": "Success",
+        "date": "2024-06-14"
+      }
+    ]
+  }
+}
