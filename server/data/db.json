@@ -953,7 +953,19 @@
         "requestedBy": "Sanjay Kumar",
         "vendor": "UltraTech Cements",
         "cost": 225000,
-        "date": "2024-06-15"
+        "date": "2024-06-15",
+        "history": [
+          {
+            "status": "requested",
+            "date": "2024-06-15",
+            "user": "Sanjay Kumar"
+          },
+          {
+            "status": "po_created",
+            "date": "2024-06-15",
+            "user": "Sanjay Kumar"
+          }
+        ]
       },
       {
         "id": "pr-2",
@@ -964,7 +976,14 @@
         "requestedBy": "Sanjay Kumar",
         "vendor": "Tata Tiscon",
         "cost": 975000,
-        "date": "2024-06-16"
+        "date": "2024-06-16",
+        "history": [
+          {
+            "status": "requested",
+            "date": "2024-06-16",
+            "user": "Sanjay Kumar"
+          }
+        ]
       },
       {
         "id": "pr-3",
@@ -975,7 +994,19 @@
         "requestedBy": "Meera Nair",
         "vendor": "Supreme Pipes",
         "cost": 85000,
-        "date": "2024-06-17"
+        "date": "2024-06-17",
+        "history": [
+          {
+            "status": "requested",
+            "date": "2024-06-17",
+            "user": "Meera Nair"
+          },
+          {
+            "status": "approved",
+            "date": "2024-06-17",
+            "user": "Meera Nair"
+          }
+        ]
       },
       {
         "id": "pr-4",
@@ -986,7 +1017,19 @@
         "requestedBy": "Meera Nair",
         "vendor": "Local Quarries",
         "cost": 80000,
-        "date": "2024-06-11"
+        "date": "2024-06-11",
+        "history": [
+          {
+            "status": "requested",
+            "date": "2024-06-11",
+            "user": "Meera Nair"
+          },
+          {
+            "status": "delivered",
+            "date": "2024-06-11",
+            "user": "Meera Nair"
+          }
+        ]
       }
     ]
   },

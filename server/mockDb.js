@@ -331,6 +331,32 @@ function loadDb() {
           });
         });
       }
+
+      // Self-heal: Sync history for existing procurement items
+      if (db.procurement) {
+        for (const projectId in db.procurement) {
+          const list = db.procurement[projectId] || [];
+          list.forEach(req => {
+            if (!req.history || req.history.length === 0) {
+              req.history = [
+                {
+                  status: "requested",
+                  date: req.date || "2024-06-11",
+                  user: req.requestedBy || "Sanjay Kumar"
+                }
+              ];
+              // If status is not requested, append the current status as well
+              if (req.status !== 'requested') {
+                req.history.push({
+                  status: req.status,
+                  date: req.date || "2024-06-12",
+                  user: req.status === 'delivered' ? "Meera Nair" : (req.requestedBy || "Sanjay Kumar")
+                });
+              }
+            }
+          });
+        }
+      }
       
       saveDb();
     } else {
@@ -725,12 +751,20 @@ export const mockDb = {
   createProcurementRequest: (projectId, request) => {
     loadDb();
     if (!db.procurement[projectId]) db.procurement[projectId] = [];
+    const today = new Date().toISOString().split('T')[0];
     const newReq = {
       id: `pr-${Date.now()}`,
       status: "requested",
       cost: request.quantity * (request.unitRate || 400),
-      date: new Date().toISOString().split('T')[0],
-      ...request
+      date: today,
+      ...request,
+      history: [
+        {
+          status: "requested",
+          date: today,
+          user: request.requestedBy || "Arjun Reddy"
+        }
+      ]
     };
     db.procurement[projectId].unshift(newReq);
     saveDb();
@@ -743,13 +777,30 @@ export const mockDb = {
       const req = list.find(r => r.id === id);
       if (req) {
         req.status = status;
+        req.date = new Date().toISOString().split('T')[0];
+
+        // Append to history transition log
+        if (!req.history) {
+          req.history = [];
+        }
+        let user = "Sanjay Kumar";
+        if (status === "approved") {
+          user = "Arjun Reddy";
+        } else if (status === "delivered") {
+          user = "Meera Nair";
+        }
+        req.history.push({
+          status,
+          date: req.date,
+          user
+        });
         
         // INTERLINK SYNC: If status is updated to delivered, log to inventory logs and stock in the material automatically
         if (status === "delivered") {
           if (!db.inventoryLogs[projectId]) db.inventoryLogs[projectId] = [];
           db.inventoryLogs[projectId].unshift({
             id: `il-proc-${Date.now()}`,
-            date: new Date().toISOString().split('T')[0],
+            date: req.date,
             material: req.material,
             type: "Stock In",
             quantity: req.quantity,

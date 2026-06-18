@@ -15,12 +15,30 @@ import {
 import { api } from '../services/api';
 import { formatRupees } from './Dashboard';
 
+const statusNames = {
+  requested: 'Requested',
+  approved: 'Approved',
+  vendor_assigned: 'Vendor Assigned',
+  po_created: 'PO Created',
+  delivered: 'Delivered'
+};
+
+const statusColors = {
+  requested: 'bg-blue-500 border-blue-200 text-blue-500',
+  approved: 'bg-purple-500 border-purple-200 text-purple-500',
+  vendor_assigned: 'bg-indigo-500 border-indigo-200 text-indigo-500',
+  po_created: 'bg-amber-500 border-amber-200 text-amber-500',
+  delivered: 'bg-green-500 border-green-200 text-green-500'
+};
+
 export default function Procurement({ project }) {
   const location = useLocation();
   const [requests, setRequests] = useState([]);
   const [materials, setMaterials] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
+  const [showHistoryModal, setShowHistoryModal] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
   const [newRequest, setNewRequest] = useState({
     materialName: '',
     quantity: '',
@@ -170,6 +188,12 @@ export default function Procurement({ project }) {
                           <User className="h-3 w-3 text-slate-400" />
                           <span className="truncate">By: {item.requestedBy}</span>
                         </div>
+                        {item.date && (
+                          <div className="flex items-center gap-1">
+                            <Clock className="h-3 w-3 text-slate-400" />
+                            <span className="truncate">Updated: {item.date}</span>
+                          </div>
+                        )}
                       </div>
 
                       {/* Direction Transition Actions */}
@@ -181,7 +205,15 @@ export default function Procurement({ project }) {
                         >
                           <ArrowLeft className="h-3 w-3" />
                         </button>
-                        <span className="text-slate-400 uppercase tracking-wider text-[8px]">{col.title.split(' ')[0]}</span>
+                        <button
+                          onClick={() => {
+                            setSelectedItem(item);
+                            setShowHistoryModal(true);
+                          }}
+                          className="px-2 py-0.5 rounded text-primary hover:bg-primary/5 transition-colors border border-primary/20 text-[8px] uppercase tracking-wider font-extrabold"
+                        >
+                          History
+                        </button>
                         <button 
                           disabled={col.id === 'delivered'}
                           onClick={() => handleTransitionStatus(item.id, item.status, 1)}
@@ -279,6 +311,67 @@ export default function Procurement({ project }) {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* History Timeline Modal */}
+      {showHistoryModal && selectedItem && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm p-4">
+          <div className="w-full max-w-md rounded-xl border border-slate-100 bg-white p-6 shadow-dropdown flex flex-col max-h-[85vh]">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-150">
+              <div>
+                <h3 className="text-sm font-bold text-slate-800">Requisition History</h3>
+                <p className="text-[10px] text-slate-400 font-semibold mt-0.5">{selectedItem.material} ({selectedItem.quantity.toLocaleString()} {selectedItem.unit})</p>
+              </div>
+              <button 
+                onClick={() => { setShowHistoryModal(false); setSelectedItem(null); }}
+                className="text-slate-450 hover:text-slate-700 text-sm font-bold px-2 py-1"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Vertical Timeline Container */}
+            <div className="mt-4 flex-1 overflow-y-auto pr-1 py-2 space-y-6 relative">
+              {/* Vertical dotted/solid line */}
+              <div className="absolute left-3 top-2 bottom-4 w-0.5 bg-slate-100 border-l border-dashed border-slate-350"></div>
+
+              {(selectedItem.history || []).map((event, index) => {
+                const statusName = statusNames[event.status] || event.status;
+                const colorClass = statusColors[event.status] || 'bg-slate-400 border-slate-200';
+                
+                return (
+                  <div key={index} className="relative pl-8 flex flex-col gap-1">
+                    {/* Timeline dot */}
+                    <div className={`absolute left-1.5 top-1 h-3.5 w-3.5 rounded-full border-2 border-white shadow-md ${colorClass.split(' ')[0]}`} />
+                    
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-extrabold text-slate-800 uppercase tracking-wide">
+                        {statusName}
+                      </span>
+                      <span className="text-[9px] font-bold text-slate-400 bg-slate-50 px-1.5 py-0.5 rounded border border-slate-100">
+                        {event.date}
+                      </span>
+                    </div>
+                    <div className="text-[10px] text-slate-500 font-medium flex items-center gap-1">
+                      <User className="h-3 w-3 text-slate-400" />
+                      <span>Updated by <span className="font-semibold text-slate-700">{event.user}</span></span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="mt-6 pt-3 border-t border-slate-100 flex justify-end">
+              <button
+                type="button"
+                onClick={() => { setShowHistoryModal(false); setSelectedItem(null); }}
+                className="rounded-lg bg-slate-800 px-4 py-1.5 text-xs font-bold text-white hover:bg-slate-750 shadow-premium transition-colors"
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       )}
