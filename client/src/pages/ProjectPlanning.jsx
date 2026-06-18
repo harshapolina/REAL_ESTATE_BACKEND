@@ -11,7 +11,9 @@ import {
   Calendar,
   Building,
   DollarSign,
-  Maximize2
+  Maximize2,
+  Filter,
+  Eye
 } from 'lucide-react';
 import { api } from '../services/api';
 import { formatRupees } from './Dashboard';
@@ -25,6 +27,37 @@ export default function ProjectPlanning({ project, setProject }) {
   const [showAddMaterial, setShowAddMaterial] = useState(false);
   const [showAddPhase, setShowAddPhase] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [showFilterDropdown, setShowFilterDropdown] = useState(false);
+  const [hiddenMaterialIds, setHiddenMaterialIds] = useState([]);
+
+  const toggleMaterialVisibility = (id) => {
+    setHiddenMaterialIds(prev => 
+      prev.includes(id) ? prev.filter(mid => mid !== id) : [...prev, id]
+    );
+  };
+
+  const handleSelectAllMaterials = () => {
+    setHiddenMaterialIds([]);
+  };
+
+  const handleDeselectAllMaterials = () => {
+    setHiddenMaterialIds(materials.map(m => m.id));
+  };
+
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      const btn = document.getElementById('filter-materials-btn');
+      if (btn && !btn.contains(e.target)) {
+        setShowFilterDropdown(false);
+      }
+    };
+    if (showFilterDropdown) {
+      document.addEventListener('click', handleOutsideClick);
+    }
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, [showFilterDropdown]);
 
   const [newMat, setNewMat] = useState({
     name: '',
@@ -394,6 +427,7 @@ export default function ProjectPlanning({ project, setProject }) {
   };
 
   const totalEstimatedCost = materials.reduce((sum, m) => sum + (m.planned * m.unitRate), 0);
+  const displayedMaterials = materials.filter(m => !hiddenMaterialIds.includes(m.id));
 
   return (
     <div className="space-y-6">
@@ -599,7 +633,52 @@ export default function ProjectPlanning({ project, setProject }) {
             <h4 className="text-xs font-bold text-slate-800">Planned Materials (Baseline)</h4>
             <p className="text-[9px] text-slate-400 font-semibold mt-0.5">Baseline estimation quantity and costing for materials</p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 relative">
+            {/* Filter Dropdown */}
+            <div className="relative">
+              <button
+                id="filter-materials-btn"
+                onClick={() => setShowFilterDropdown(!showFilterDropdown)}
+                className="flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-[10px] font-bold text-slate-650 hover:bg-slate-50 shadow-premium transition-colors"
+              >
+                <Filter className="h-3.5 w-3.5 text-slate-400" />
+                <span>Filter Rows ({materials.length - hiddenMaterialIds.length}/{materials.length})</span>
+              </button>
+
+              {showFilterDropdown && (
+                <div className="absolute right-0 mt-1.5 z-40 w-56 rounded-xl border border-slate-150 bg-white p-3 shadow-dropdown flex flex-col gap-2 max-h-80 overflow-y-auto animate-fade-in">
+                  <div className="flex items-center justify-between pb-1.5 border-b border-slate-100 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    <span>Show/Hide Rows</span>
+                    <div className="flex gap-2 text-primary lowercase font-semibold">
+                      <button onClick={handleSelectAllMaterials} className="hover:underline">All</button>
+                      <span className="text-slate-200">|</span>
+                      <button onClick={handleDeselectAllMaterials} className="hover:underline">None</button>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-1.5 overflow-y-auto max-h-60 pr-0.5">
+                    {materials.map(mat => {
+                      const isVisible = !hiddenMaterialIds.includes(mat.id);
+                      return (
+                        <label 
+                          key={mat.id}
+                          className="flex items-center gap-2 px-2 py-1 rounded-lg hover:bg-slate-50 cursor-pointer text-xs font-semibold text-slate-700 transition-colors"
+                        >
+                          <input 
+                            type="checkbox"
+                            checked={isVisible}
+                            onChange={() => toggleMaterialVisibility(mat.id)}
+                            className="h-3.5 w-3.5 rounded border-slate-300 text-primary focus:ring-primary focus:ring-0 cursor-pointer"
+                          />
+                          <span className="truncate">{mat.name}</span>
+                        </label>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+
             <label className="flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-[10px] font-bold text-slate-600 hover:bg-slate-50 shadow-premium transition-colors cursor-pointer">
               <Download className="h-3.5 w-3.5 text-slate-400" />
               <span>Import Excel/CSV</span>
@@ -644,8 +723,8 @@ export default function ProjectPlanning({ project, setProject }) {
                 <tr>
                   <td colSpan={7 + phases.length} className="py-8 text-center text-slate-400">Loading materials baseline matrix...</td>
                 </tr>
-              ) : materials.length > 0 ? (
-                materials.map((mat, idx) => (
+              ) : displayedMaterials.length > 0 ? (
+                displayedMaterials.map((mat, idx) => (
                   <tr key={mat.id} className="hover:bg-slate-50/50 transition-colors">
                     <td className="py-2 px-4 text-center font-bold text-slate-400">{idx + 1}</td>
                     <td className="py-2 px-3 font-bold text-slate-800">{mat.name}</td>
@@ -698,7 +777,9 @@ export default function ProjectPlanning({ project, setProject }) {
                 ))
               ) : (
                 <tr>
-                  <td colSpan={7 + phases.length} className="py-8 text-center text-slate-400">No baseline materials configured yet.</td>
+                  <td colSpan={7 + phases.length} className="py-8 text-center text-slate-400">
+                    {materials.length > 0 ? "All materials hidden by filter." : "No baseline materials configured yet."}
+                  </td>
                 </tr>
               )}
             </tbody>
