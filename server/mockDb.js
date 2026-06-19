@@ -37,18 +37,35 @@ export const mockDb = {
     if (!user) return [];
     if (user.role === 'Platform Owner') {
       return await Project.find();
-    } else if (user.role === 'Super Admin') {
-      return await Project.find({ ownerId: user.id });
-    } else if (user.role === 'Manager') {
+    }
+    
+    const myCompanyId = user.companyId || user.id;
+
+    if (user.role === 'Super Admin') {
       return await Project.find({
         $or: [
-          { managerId: user.id },
-          { id: { $in: user.assignedProjects || [] } }
+          { companyId: myCompanyId },
+          { ownerId: user.id }
+        ]
+      });
+    } else if (user.role === 'Manager') {
+      return await Project.find({
+        $and: [
+          { $or: [ { companyId: myCompanyId }, { ownerId: myCompanyId } ] },
+          {
+            $or: [
+              { managerId: user.id },
+              { id: { $in: user.assignedProjects || [] } }
+            ]
+          }
         ]
       });
     } else { // Site Manager or Employee
       return await Project.find({
-        id: { $in: user.assignedProjects || [] }
+        $and: [
+          { $or: [ { companyId: myCompanyId }, { ownerId: myCompanyId } ] },
+          { id: { $in: user.assignedProjects || [] } }
+        ]
       });
     }
   },
@@ -59,6 +76,7 @@ export const mockDb = {
     const newProj = new Project({
       id: `p-${Date.now()}`,
       ownerId: user.id, // Map project ownership to the creating Client
+      companyId: user.companyId || user.id, // Stamp project with company ID
       phases: [],
       plannedMaterials: [],
       usedBudget: 0,

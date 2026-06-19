@@ -55,12 +55,16 @@ const authorizeProjectAccess = async (req, res, next) => {
     const project = await Project.findOne({ id: projectId });
     if (!project) return res.status(404).json({ message: "Project not found" });
 
-    // Super Admin must own the project
+    // Strict Company Isolation Check
+    const myCompanyId = req.user.companyId || req.user.id;
+    const projectCompanyId = project.companyId || project.ownerId;
+    if (projectCompanyId !== myCompanyId) {
+      return res.status(403).json({ message: "Access Denied: This project belongs to another company." });
+    }
+
+    // Super Admin has access to all projects under their company
     if (userRole === 'Super Admin') {
-      if (project.ownerId === userId) {
-        return next();
-      }
-      return res.status(403).json({ message: "Access Denied: You do not own this project." });
+      return next();
     }
 
     const isAssignedManager = project.managerId === userId && userRole === 'Manager';

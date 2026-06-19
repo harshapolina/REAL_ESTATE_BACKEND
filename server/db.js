@@ -146,6 +146,7 @@ async function seedDB() {
         return {
           ...p,
           ownerId: 'u-2', // Owned by Sanjay (Client Admin)
+          companyId: 'u-2', // Associated with Sanjay's company
           managerId
         };
       });
@@ -153,6 +154,15 @@ async function seedDB() {
       await Project.insertMany(projectsToSeed);
       console.log(`Seeded ${projectsToSeed.length} Projects with owner and manager mapping.`);
     }
+
+    // Run migration to ensure any user-created legacy projects have companyId set
+    await Project.updateMany(
+      { companyId: { $exists: false } },
+      [
+        { $set: { companyId: "$ownerId" } } // Set companyId to be the ownerId (since owner is the Super Admin)
+      ]
+    );
+    console.log("Migration: Ensured all projects in DB have companyId defined.");
 
     // Seed Budgets
     if (data.budgets) {

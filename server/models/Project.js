@@ -12,6 +12,7 @@ const PhaseSchema = new mongoose.Schema({
 const ProjectSchema = new mongoose.Schema({
   id: { type: String, required: true, unique: true },
   ownerId: { type: String, required: true }, // Client (User) ID who owns the project
+  companyId: { type: String }, // Company ID that owns the project
   managerId: { type: String }, // Manager user ID assigned to update tracking
   name: { type: String, required: true },
   location: { type: String, required: true },
