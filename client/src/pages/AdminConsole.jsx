@@ -21,7 +21,7 @@ import {
   UserCheck,
   LogOut
 } from 'lucide-react';
-import { api } from '../services/api';
+import { api, BASE_URL } from '../services/api';
 
 export default function AdminConsole() {
   const navigate = useNavigate();
@@ -64,7 +64,7 @@ export default function AdminConsole() {
       
       // Fetch users
       const token = sessionStorage.getItem('buildtrack_token');
-      const usersRes = await fetch('http://localhost:5000/api/admin/users', {
+      const usersRes = await fetch(`${BASE_URL}/admin/users`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (!usersRes.ok) throw new Error("Failed to load users");
@@ -72,7 +72,7 @@ export default function AdminConsole() {
       setUsers(usersData);
 
       // Fetch projects
-      const projectsRes = await fetch('http://localhost:5000/api/projects', {
+      const projectsRes = await fetch(`${BASE_URL}/projects`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (!projectsRes.ok) throw new Error("Failed to load projects");
@@ -104,7 +104,7 @@ export default function AdminConsole() {
     }
 
     try {
-      const res = await fetch('http://localhost:5000/api/admin/users', {
+      const res = await fetch(`${BASE_URL}/admin/users`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -139,7 +139,7 @@ export default function AdminConsole() {
     const token = sessionStorage.getItem('buildtrack_token');
 
     try {
-      const res = await fetch(`http://localhost:5000/api/admin/users/${editingUser.id}`, {
+      const res = await fetch(`${BASE_URL}/admin/users/${editingUser.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -163,7 +163,7 @@ export default function AdminConsole() {
   const handleToggleStatus = async (user) => {
     const token = sessionStorage.getItem('buildtrack_token');
     try {
-      const res = await fetch(`http://localhost:5000/api/admin/users/${user.id}`, {
+      const res = await fetch(`${BASE_URL}/admin/users/${user.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -182,7 +182,7 @@ export default function AdminConsole() {
     if (!confirm(`Are you sure you want to delete user ${user.name}?`)) return;
     const token = sessionStorage.getItem('buildtrack_token');
     try {
-      const res = await fetch(`http://localhost:5000/api/admin/users/${user.id}`, {
+      const res = await fetch(`${BASE_URL}/admin/users/${user.id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

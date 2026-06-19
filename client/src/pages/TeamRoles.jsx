@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Users, Plus, ShieldCheck, Mail, ShieldAlert, Check, X, Trash2, UserPlus, Link2 } from 'lucide-react';
-import { api } from '../services/api';
+import { api, BASE_URL } from '../services/api';
 
 export default function TeamRoles({ project }) {
   const [users, setUsers] = useState([]);
@@ -31,7 +31,7 @@ export default function TeamRoles({ project }) {
     try {
       setLoading(true);
       const token = sessionStorage.getItem('buildtrack_token');
-      const res = await fetch('http://localhost:5000/api/admin/users', {
+      const res = await fetch(`${BASE_URL}/admin/users`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (!res.ok) throw new Error("Failed to load users");
@@ -70,7 +70,7 @@ export default function TeamRoles({ project }) {
         assignedProjects: [newMember.projectId || project.id]
       };
       
-      const res = await fetch('http://localhost:5000/api/admin/users', {
+      const res = await fetch(`${BASE_URL}/admin/users`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -115,7 +115,7 @@ export default function TeamRoles({ project }) {
         return;
       }
 
-      const res = await fetch(`http://localhost:5000/api/admin/users/${selectedExistingUserId}`, {
+      const res = await fetch(`${BASE_URL}/admin/users/${selectedExistingUserId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -147,7 +147,7 @@ export default function TeamRoles({ project }) {
     try {
       const updatedProjects = (memberUser.assignedProjects || []).filter(id => id !== project.id);
       
-      const res = await fetch(`http://localhost:5000/api/admin/users/${memberUser.id}`, {
+      const res = await fetch(`${BASE_URL}/admin/users/${memberUser.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
