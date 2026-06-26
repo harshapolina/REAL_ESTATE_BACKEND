@@ -579,6 +579,11 @@ app.get('/api/projects/:id/alerts', authenticateToken, authorizeProjectAccess, a
   }
 });
 
+// Health check endpoint for keeping server awake
+app.get('/api/health', (req, res) => {
+  res.status(200).json({ status: 'OK', timestamp: new Date() });
+});
+
 // Serve the API
 app.listen(PORT, () => {
   console.log(`BuildTrack Server running on http://localhost:${PORT}`);

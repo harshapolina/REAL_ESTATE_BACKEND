@@ -24,7 +24,10 @@ export async function connectDB() {
   }
 
   try {
-    const conn = await mongoose.connect(connString);
+    const conn = await mongoose.connect(connString, {
+      serverSelectionTimeoutMS: 5000,
+      family: 4
+    });
     console.log(`MongoDB Connected: ${conn.connection.host}`);
     
     // Seed DB if empty or outdated
